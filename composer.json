@@ -1,0 +1,21 @@
+{
+    "name": "chez14/galeepar",
+    "description": "Tukang stalker lagi bosen.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris",
+            "email": "christianto.g.14@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+          "GaleePAR\\":"src/"
+        }
+      }
+}
