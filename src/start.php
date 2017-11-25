@@ -3,7 +3,8 @@ namespace GaleePAR;
 
 class Start extends System\Jombloton {
     const
-        DLOCATION = "dumped/";
+        DLOCATION = "dumped/",
+        MAX_STOP = 5;
 
     protected 
         $jurusan = [
@@ -34,12 +35,12 @@ class Start extends System\Jombloton {
 
     protected function algorithm($start = 2013, $end = 2017) {
         while($start <= $end) {
-            
+
             echo "We'll try to fetching the {$start} generations\n";
 
             foreach($this->jurusan as $jurusan){
                 $gagal = 0;
-                for($i = 0; $i < 400 && $gagal < 5; $i++){
+                for($i = 0; $i < 400 && $gagal < self::MAX_STOP; $i++){
                     $npm = $this->build_npm($start, $jurusan, $i);
                     echo "Trying to fetch {$npm}...";
                     try {
@@ -49,6 +50,10 @@ class Start extends System\Jombloton {
                     } catch (\Exception $e){
                         echo "FAIL";
                         $gagal++;
+                    }
+                    if($gagal >= self::MAX_STOP) {
+                        $gagal -= self::MAX_STOP;
+                        echo " >>>> STOPS AT {$gagal}.";
                     }
                     echo "\n";
                 }
