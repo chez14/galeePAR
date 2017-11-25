@@ -40,7 +40,7 @@ class Start extends System\Jombloton {
 
             foreach($this->jurusan as $jurusan){
                 $gagal = 0;
-                for($i = 0; $i < 400 && $gagal < self::MAX_STOP; $i++){
+                for($i = 1; $i < 400 && $gagal < self::MAX_STOP; $i++){
                     $npm = $this->build_npm($start, $jurusan, $i);
                     echo "Trying to fetch {$npm}...";
                     try {
@@ -51,11 +51,11 @@ class Start extends System\Jombloton {
                         echo "FAIL";
                         $gagal++;
                     }
-                    if($gagal >= self::MAX_STOP) {
-                        $gagal -= self::MAX_STOP;
-                        echo " >>>> STOPS AT {$gagal}.";
-                    }
                     echo "\n";
+                }
+                if($gagal >= self::MAX_STOP) {
+                    $gagal -= self::MAX_STOP;
+                    echo ">>>>>>>>>>>>>>>>>>>>>> STOPS AT {$gagal}.\n";
                 }
             }
             $start++;
